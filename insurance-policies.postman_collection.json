@@ -63,7 +63,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "{{api}}/policies/2/"
+						"url": "{{api}}/policies/3/"
 					},
 					"response": []
 				},
@@ -81,7 +81,25 @@
 								}
 							}
 						},
-						"url": "{{api}}/policies/2/"
+						"url": "{{api}}/policies/3/"
+					},
+					"response": []
+				},
+				{
+					"name": "Partial update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"customer_name\": \"Rafa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{api}}/policies/3/"
 					},
 					"response": []
 				},

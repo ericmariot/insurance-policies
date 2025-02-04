@@ -2,11 +2,16 @@ from django.db import models
 
 
 class Policy(models.Model):
+    POLICIES_TYPES = {
+        "auto": "Auto",
+        "home": "Home",
+        "life": "Life",
+        "travel": "Travel",
+    }
+
     policy_id = models.AutoField(primary_key=True)
-    customer_name = models.CharField(max_length=255)
-    policy_type = models.CharField(
-        max_length=50, choices=[("auto", "Auto"), ("home", "Home")]
-    )
+    customer_name = models.CharField(max_length=256)
+    policy_type = models.CharField(max_length=64, choices=POLICIES_TYPES)
     expiry_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
 

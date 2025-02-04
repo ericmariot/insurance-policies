@@ -5,5 +5,5 @@ from policies.serializers import PolicySerializer
 
 
 class PolicyViewSet(viewsets.ModelViewSet):
-    queryset = Policy.objects.all().order_by("-created_at")
+    queryset = Policy.objects.all().order_by("expiry_date")
     serializer_class = PolicySerializer

@@ -42,9 +42,19 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third party
     "rest_framework",
+    "drf_spectacular",
     # Local
     "policies.apps.PoliciesConfig",
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Insurance Policies API",
+    "VERSION": "1.0.0",
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

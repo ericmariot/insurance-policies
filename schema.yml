@@ -1,0 +1,215 @@
+openapi: 3.0.3
+info:
+  title: ''
+  version: 0.0.0
+paths:
+  /policies/:
+    get:
+      operationId: policies_list
+      tags:
+      - policies
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Policy'
+          description: ''
+    post:
+      operationId: policies_create
+      tags:
+      - policies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Policy'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+  /policies/{policy_id}/:
+    get:
+      operationId: policies_retrieve
+      parameters:
+      - in: path
+        name: policy_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - policies
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+    put:
+      operationId: policies_update
+      parameters:
+      - in: path
+        name: policy_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - policies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Policy'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+    patch:
+      operationId: policies_partial_update
+      parameters:
+      - in: path
+        name: policy_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - policies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPolicy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPolicy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPolicy'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+    delete:
+      operationId: policies_destroy
+      parameters:
+      - in: path
+        name: policy_id
+        schema:
+          type: string
+          format: uuid
+        required: true
+      tags:
+      - policies
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    PatchedPolicy:
+      type: object
+      properties:
+        policy_id:
+          type: string
+          format: uuid
+          readOnly: true
+        customer_name:
+          type: string
+          maxLength: 256
+        policy_type:
+          $ref: '#/components/schemas/PolicyTypeEnum'
+        expiry_date:
+          type: string
+          format: date
+    Policy:
+      type: object
+      properties:
+        policy_id:
+          type: string
+          format: uuid
+          readOnly: true
+        customer_name:
+          type: string
+          maxLength: 256
+        policy_type:
+          $ref: '#/components/schemas/PolicyTypeEnum'
+        expiry_date:
+          type: string
+          format: date
+      required:
+      - customer_name
+      - expiry_date
+      - policy_id
+      - policy_type
+    PolicyTypeEnum:
+      enum:
+      - auto
+      - home
+      - life
+      - travel
+      type: string
+      description: |-
+        * `auto` - Auto
+        * `home` - Home
+        * `life` - Life
+        * `travel` - Travel
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

@@ -76,7 +76,7 @@ api = 127.0.0.1:800
 
 [POST] {{api}}/policies/
 [GET] {{api}}/policies/
-[GET] {{api}}/policies/1/
-[PUT] {{api}}/policies/1/
-[DEL] {{api}}/policies/1/
+[GET] {{api}}/policies/11ef0546-f682-4ee8-ae5b-55dbae196163/
+[PUT] {{api}}/policies/11ef0546-f682-4ee8-ae5b-55dbae196163/
+[DEL] {{api}}/policies/11ef0546-f682-4ee8-ae5b-55dbae196163/
 ```

@@ -6,3 +6,4 @@ factory_boy==3.3.3
 pytest-django==4.9.0
 uv==0.5.28
 drf-spectacular==0.28.0
+gunicorn==23.0.0

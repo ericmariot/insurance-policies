@@ -29,6 +29,8 @@ factory-boy==3.3.3
     # via -r requirements-dev.in
 faker==35.2.0
     # via factory-boy
+gunicorn==23.0.0
+    # via -r requirements-dev.in
 inflection==0.5.1
     # via drf-spectacular
 iniconfig==2.0.0
@@ -42,6 +44,7 @@ mypy-extensions==1.0.0
 packaging==24.2
     # via
     #   black
+    #   gunicorn
     #   pytest
 pathspec==0.12.1
     # via black

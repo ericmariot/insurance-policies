@@ -6,6 +6,26 @@ You can check a live demonstration at [insurance-policies](https://insurance-pol
 
 ---
 
+## How to run the application with Docker
+
+1. Clone and Move to the project:
+```
+git@github.com:ericmariot/insurance-policies.git
+cd insurance-policies
+```
+
+2. Build the docker image
+```
+docker build -t insurance-policies . 
+```
+
+3. Run the project
+```
+docker run -p 8000:8000 insurance-policies
+```
+
+It should be up at the designated port, in this case [http://0.0.0.0:8000/policies/](http://0.0.0.0:8000/policies/)
+
 ## How to run the application locally
 
 1. Clone and Move to the project:

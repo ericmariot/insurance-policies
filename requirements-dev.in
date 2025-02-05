@@ -7,3 +7,4 @@ pytest-django==4.9.0
 uv==0.5.28
 drf-spectacular==0.28.0
 gunicorn==23.0.0
+whitenoise==6.8.2

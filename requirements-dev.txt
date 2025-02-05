@@ -84,3 +84,5 @@ uritemplate==4.1.1
     # via drf-spectacular
 uv==0.5.28
     # via -r requirements-dev.in
+whitenoise==6.8.2
+    # via -r requirements-dev.in

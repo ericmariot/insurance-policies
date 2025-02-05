@@ -2,6 +2,8 @@
 
 This is a REST API for managing insurance policies.
 
+You can check a live demonstration at [insurance-policies](https://insurance-policies.fly.dev/policies/) that was deployed with [fly.io](https://fly.io/)
+
 ---
 
 ## How to run the application locally

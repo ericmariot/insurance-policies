@@ -40,6 +40,11 @@ You can check the server heatlh at [127.0.0.1:8000/healthz](127.0.0.1:8000/healt
 
 And more endpoints at the [API Collection](#api-collection)
 
+7. Tests can be ran with
+```
+pytest
+```
+
 ## API Collection
 
 You can find a full postman collection at [`insurance-policies.postman_collection.json`](https://github.com/ericmariot/insurance-policies/blob/main/insurance-policies.postman_collection.json).

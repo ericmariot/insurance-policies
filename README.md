@@ -40,7 +40,7 @@ python manage.py runserver
 
 You can check the server heatlh at [127.0.0.1:8000/healthz](127.0.0.1:8000/healthz)
 
-And more endpoints at the [API Collection](#api-collection)
+And more documentation at the endpoint `/swagger/` or in the [deployed project](https://insurance-policies.fly.dev/swagger/)
 
 7. Tests can be ran with
 ```

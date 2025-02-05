@@ -38,7 +38,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"customer_name\": \"Eric\",\n\t\"policy_type\": \"auto\",\n    \"expiry_date\": \"2026-02-22\"\n}",
+							"raw": "{\n\t\"customer_name\": \"Eric\",\n\t\"policy_type\": \"erc\",\n    \"expiry_date\": \"2026-02-22\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

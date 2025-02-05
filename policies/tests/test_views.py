@@ -3,7 +3,7 @@ from django.urls import reverse
 from rest_framework import status
 from datetime import date, timedelta
 
-from policies.models import Policy
+from policies.models import Policy, POLICIES_TYPES
 from policies.tests.factories import PolicyFactory
 
 
@@ -20,7 +20,9 @@ class TestPolicyViewSet:
         response = client.get(url)
 
         assert response.status_code == status.HTTP_200_OK
-        assert len(response.data) == 5
+
+        # 3 policies from initial migration + 5 from fixture
+        assert len(response.data) == 8
 
     def test_get_policy_detail(self, client, policy):
         p = policy[0]
@@ -37,7 +39,7 @@ class TestPolicyViewSet:
         url = reverse("policies:policy-list")
         data = {
             "customer_name": "Eric",
-            "policy_type": list(Policy.POLICIES_TYPES.keys())[0],
+            "policy_type": POLICIES_TYPES.LIFE,
             "expiry_date": (date.today() + timedelta(days=365)).isoformat(),
         }
         response = client.post(url, data, format="json")
@@ -86,7 +88,7 @@ class TestPolicyViewSet:
         url = reverse("policies:policy-list")
         data = {
             "customer_name": "Eric",
-            "policy_type": list(Policy.POLICIES_TYPES.keys())[0],
+            "policy_type": POLICIES_TYPES.AUTO,
             "expiry_date": (date.today() - timedelta(days=365)).isoformat(),
         }
         response = client.post(url, data, format="json")

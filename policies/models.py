@@ -1,14 +1,26 @@
 from django.db import models
 
 
-class Policy(models.Model):
-    POLICIES_TYPES = {
-        "auto": "Auto",
-        "home": "Home",
-        "life": "Life",
-        "travel": "Travel",
-    }
+class POLICIES_TYPES(models.TextChoices):
+    AUTO = (
+        "auto",
+        "Auto",
+    )
+    HOME = (
+        "home",
+        "Home",
+    )
+    LIFE = (
+        "life",
+        "Life",
+    )
+    TRAVEL = (
+        "travel",
+        "Travel",
+    )
 
+
+class Policy(models.Model):
     policy_id = models.AutoField(primary_key=True)
     customer_name = models.CharField(max_length=256)
     policy_type = models.CharField(max_length=64, choices=POLICIES_TYPES)

@@ -3,29 +3,22 @@ from django.urls import reverse
 from rest_framework import status
 from datetime import date, timedelta
 
-from policies.models import Policy, POLICIES_TYPES
+from policies.models import Policy, PolicyType
 from policies.tests.factories import PolicyFactory
 
 
 @pytest.mark.django_db
 class TestPolicyViewSet:
-
-    @pytest.fixture
-    def policy(self):
-        policies = [PolicyFactory() for _ in range(5)]
-        return policies
-
-    def test_get_policies_list(self, client, policy):
+    def test_get_policies_list(self, client):
         url = reverse("policies:policy-list")
         response = client.get(url)
 
+        # 3 policies from initial migration
+        assert len(response.data) == 3
         assert response.status_code == status.HTTP_200_OK
 
-        # 3 policies from initial migration + 5 from fixture
-        assert len(response.data) == 8
-
-    def test_get_policy_detail(self, client, policy):
-        p = policy[0]
+    def test_get_policy_detail(self, client):
+        p = PolicyFactory()
         url = reverse("policies:policy-detail", args=[p.policy_id])
         response = client.get(url)
 
@@ -39,7 +32,7 @@ class TestPolicyViewSet:
         url = reverse("policies:policy-list")
         data = {
             "customer_name": "Eric",
-            "policy_type": POLICIES_TYPES.LIFE,
+            "policy_type": PolicyType.LIFE,
             "expiry_date": (date.today() + timedelta(days=365)).isoformat(),
         }
         response = client.post(url, data, format="json")
@@ -49,8 +42,8 @@ class TestPolicyViewSet:
         assert response.data["policy_type"] == data["policy_type"]
         assert response.data["expiry_date"] == data["expiry_date"]
 
-    def test_put_policy(self, client, policy):
-        p = policy[0]
+    def test_put_policy(self, client):
+        p = PolicyFactory()
         url = reverse("policies:policy-detail", args=[p.policy_id])
         data = {
             "customer_name": "Updated Eric",
@@ -63,8 +56,8 @@ class TestPolicyViewSet:
         assert response.status_code == status.HTTP_200_OK
         assert response.json()["customer_name"] == "Updated Eric"
 
-    def test_patch_policy(self, client, policy):
-        p = policy[0]
+    def test_patch_policy(self, client):
+        p = PolicyFactory()
         url = reverse("policies:policy-detail", args=[p.policy_id])
         data = {
             "customer_name": "Partially Updated Eric",
@@ -75,8 +68,8 @@ class TestPolicyViewSet:
         assert response.status_code == status.HTTP_200_OK
         assert response.json()["customer_name"] == "Partially Updated Eric"
 
-    def test_delete_policy(self, client, policy):
-        p = policy[0]
+    def test_delete_policy(self, client):
+        p = PolicyFactory()
         url = reverse("policies:policy-detail", args=[p.policy_id])
 
         response = client.delete(url)
@@ -88,7 +81,7 @@ class TestPolicyViewSet:
         url = reverse("policies:policy-list")
         data = {
             "customer_name": "Eric",
-            "policy_type": POLICIES_TYPES.AUTO,
+            "policy_type": PolicyType.AUTO,
             "expiry_date": (date.today() - timedelta(days=365)).isoformat(),
         }
         response = client.post(url, data, format="json")

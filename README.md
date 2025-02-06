@@ -30,7 +30,7 @@ It should be up at the designated port, in this case [http://0.0.0.0:8000/polici
 
 1. Clone and Move to the project:
 ```
-git@github.com:ericmariot/insurance-policies.git
+git clone git@github.com:ericmariot/insurance-policies.git
 cd insurance-policies
 ```
 

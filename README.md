@@ -72,7 +72,9 @@ pytest
 You can find a full postman collection at [`insurance-policies.postman_collection.json`](https://github.com/ericmariot/insurance-policies/blob/main/insurance-policies.postman_collection.json).
 
 ```
-api = 127.0.0.1:800
+api = 127.0.0.1:8000
+
+[DOCS] {{api}}/swagger/
 
 [POST] {{api}}/policies/
 [GET] {{api}}/policies/

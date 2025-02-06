@@ -10,7 +10,7 @@ You can check a live demonstration at [insurance-policies](https://insurance-pol
 
 1. Clone and Move to the project:
 ```
-git@github.com:ericmariot/insurance-policies.git
+git clone git@github.com:ericmariot/insurance-policies.git
 cd insurance-policies
 ```
 
